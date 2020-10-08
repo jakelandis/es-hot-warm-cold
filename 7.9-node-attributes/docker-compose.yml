@@ -1,0 +1,68 @@
+version: '3'
+services:
+  elasticsearch1:
+    image: elasticsearch:7.9.2
+    container_name: node1
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    volumes:
+      - ./elasticsearch1.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
+    networks:
+      - esnet
+
+  elasticsearch2:
+    image: elasticsearch:7.9.2
+    container_name: node2
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9201:9201
+    volumes:
+      - ./elasticsearch2.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
+    networks:
+      - esnet
+
+  elasticsearch3:
+    image: elasticsearch:7.9.2
+    container_name: node3
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9202:9202
+    volumes:
+      - ./elasticsearch3.yml:/usr/share/elasticsearch/config/elasticsearch.yml  
+    networks:
+      - esnet
+
+  kibana:
+    image: kibana:7.9.2
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch1:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - esnet
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml      
+    depends_on:
+      - elasticsearch1
+      - elasticsearch2
+      - elasticsearch3
+
+networks:
+  esnet:
