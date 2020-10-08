@@ -21,7 +21,7 @@ Navigate to http://localhost:5601/app/dev_tools#/console
 
 ```
 GET /_cat/nodes?v
-GET _nodes?filter_path=nodes.*.name,**.attributes.season
+GET _nodes?filter_path=nodes.*.name,**.roles
 ```
 results in
 ```

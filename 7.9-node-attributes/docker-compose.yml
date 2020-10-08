@@ -52,7 +52,7 @@ services:
     image: kibana:7.9.2
     container_name: kibana
     environment:
-      ELASTICSEARCH_URL: http://elasticsearch1:9200
+      ELASTICSEARCH_URL: http://node1:9200
     ports:
       - "5601:5601"
     networks:

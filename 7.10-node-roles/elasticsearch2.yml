@@ -6,3 +6,4 @@ discovery.seed_hosts: ['node1','node2, node3']
 cluster.initial_master_nodes: ['node1']
 http.port: 9201
 xpack.security.enabled: false
+node.roles: [ master, data_warm, data_content]
