@@ -4,7 +4,7 @@ Prior to 7.10, hot, warm, cold architectures were implemented with node attribut
 
 7.10+ you can still use node attributes, but data tiers is the new prefered implementation. 
 
-This is an example of how to implement hot, warm, cold with data tiers. 
+This is an example of how to implement hot, warm, cold with node attributes.
 
 
 ## Pre-reqs
@@ -21,7 +21,7 @@ Navigate to http://localhost:5601/app/dev_tools#/console
 
 ```
 GET /_cat/nodes?v
-GET _nodes?filter_path=nodes.*.name,**.roles
+GET _nodes?filter_path=nodes.*.name,**.attributes.season
 ```
 results in
 ```

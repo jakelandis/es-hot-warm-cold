@@ -4,9 +4,7 @@ Prior to 7.10, hot, warm, cold architectures were implemented with node attribut
 
 7.10+ you can still use node attributes, but data tiers is the new prefered implementation. 
 
-This is an example of how to implement hot, warm, cold with node attributes. This purpose of this example to set a foundation
-for data tiers and why you would want to use them. It builds on the 7.9-node-attributes example to help contrast the change introduced in 7.10.
-
+This is an example of how to implement hot, warm, cold with data tiers.
 
 ## Pre-reqs
 
