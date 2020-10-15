@@ -1,4 +1,4 @@
-# Hot Warm Cold with node attributes
+# Hot Warm Cold with node roles
 
 Prior to 7.10, hot, warm, cold architectures were implemented with node attributes and [shard allocation filtering](https://www.elastic.co/guide/en/elasticsearch/reference/current/shard-allocation-filtering.html)
 
