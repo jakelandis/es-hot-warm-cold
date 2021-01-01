@@ -1,7 +1,7 @@
 version: '3'
 services:
   elasticsearch1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0-SNAPSHOT
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
     container_name: node1
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -17,7 +17,7 @@ services:
       - esnet
 
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0-SNAPSHOT
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
     container_name: node2
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -33,7 +33,7 @@ services:
       - esnet
 
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0-SNAPSHOT
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
     container_name: node3
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -48,22 +48,21 @@ services:
     networks:
       - esnet
 
-# Looks like 7.10-SNAPSHOT is current broken ;( 
-  # kibana:
-  #   image: docker.elastic.co/kibana/kibana:7.10.0-SNAPSHOT
-  #   container_name: kibana
-  #   environment:
-  #     ELASTICSEARCH_URL: http://node1:9200
-  #   ports:
-  #     - "5601:5601"
-  #   networks:
-  #     - esnet
-  #   volumes:
-  #     - ./kibana.yml:/usr/share/kibana/config/kibana.yml      
-  #   depends_on:
-  #     - elasticsearch1
-  #     - elasticsearch2
-  #     - elasticsearch3
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.0
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_URL: http://node1:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - esnet
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml      
+    depends_on:
+      - elasticsearch1
+      - elasticsearch2
+      - elasticsearch3
 
 networks:
   esnet:
